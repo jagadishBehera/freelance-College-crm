@@ -1,36 +1,15 @@
-import React, { useState } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
-import { FcGoogle } from "react-icons/fc";
-import { RiFacebookCircleFill } from "react-icons/ri";
-import Tostify from "../Common/Tostify";
-import { toast } from "react-toastify";
-import lgnIllustrator from "../../Assets/Login/lgnIll.png";
 import logo from "../../Assets/Logos/AudizoneLogo.png";
 import lgnBg from "../../Assets/Login/bg.png";
 import LeftSection from "../../Components/Login/LeftSection";
 
 const Login = () => {
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
-  const handleLogin = async () => {
+  const handleLogin = (e) => {
+    e.preventDefault(); // prevent page reload
     navigate("/admin/dashboard");
-  };
-
-  const goToSignUP = () => {
-    navigate("/sign-up");
-  };
-
-  const tostifyErr = (msg) => {
-    toast.error(msg, {
-      position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: true,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-    });
   };
 
   return (
@@ -49,6 +28,7 @@ const Login = () => {
           <p className="text-gray-500 mb-6">
             Enter your details to proceed further
           </p>
+
           <form onSubmit={handleLogin} className="space-y-4">
             <div>
               <input
@@ -57,6 +37,7 @@ const Login = () => {
                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
               />
             </div>
+
             <div>
               <input
                 type="password"
@@ -64,12 +45,14 @@ const Login = () => {
                 className="w-full px-4 py-2 border rounded-md focus:outline-none focus:ring-2 focus:ring-blue-400"
               />
             </div>
+
             <div className="flex items-center">
               <input type="checkbox" id="remember" className="mr-2" />
               <label htmlFor="remember" className="text-sm text-gray-700">
                 Remember Me !
               </label>
             </div>
+
             <button
               type="submit"
               className="w-full bg-primary text-white py-2 rounded-md hover:bg-btnHover transition duration-200"
